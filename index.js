@@ -10,15 +10,20 @@ app.use(cors());
 app.use(express.json());
 
 
-async function run(){
-try{
 
-}
-finally{
-  
-}
-}
-run().catch(console.log);
+const projectDetails = require('./data/details.json');
+
+
+app.get('/projects', (req, res) => {
+ res.send(projectDetails);
+});
+
+app.get('/projects/:id', (req, res) => {
+ const id = req.params.id;
+ const projectCategory = projectDetails.filter(details => details.id === id);
+ res.send(projectCategory);
+});
+
 
 
 app.get('/', async(req,res)=>{
